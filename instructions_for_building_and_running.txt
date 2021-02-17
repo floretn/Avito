@@ -8,7 +8,8 @@
 Для создания необходимой схемы БД нужно выполнить скрипт schema_DB.sql в базе Avito.
 
 Для сборки проекта необходим jdk не ниже 1.8 и Maven.
-Через командную строку в папке */Avito/test-project выполняем команду: mvn package
+Через командную строку в папке */Avito/test-project выполняем команду: mvn package (Может потребоваться ключ
+-Djavax.xml.accessExternalSchema=all: mvn package -Djavax.xml.accessExternalSchema=all).
 После сборки в папке */Avito/test-project/test-ui/target будет лежать собранный war-файл test-ui.war
 Данный файл необходимо развернуть на сервере приложений (я использую сервер приложений Tomcat).
 После этого в браузере переходим по ссылке http://localhost:8080/test-ui/ru/mephi/avito/ad.xhtml
