@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html  xmlns = "http://www.w3.org/1999/xhtml"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:h = "http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:composite = "http://java.sun.com/jsf/composite">
+
+<composite:interface>
+    <composite:attribute name = "helper" type="ru.mephi.avito.bean.Helper"/>
+    <composite:attribute name = "widgetVar"/>
+</composite:interface>
+
+<composite:implementation>
+    <h:form id="formIns">
+        <p:dialog header="Создание объявления" widgetVar="#{cc.attrs.widgetVar}" height="500">
+            <p:panel id="insPanel">
+                <br/>
+                <p:messages id="msgs" />
+                <br/>
+                <span class="ui-float-label">
+                    <p:inputText id="insert-name" value="#{cc.attrs.helper.ad.name}" required="true"
+                                 requiredMessage="Название объявления обязательно!">
+                        <f:validateLength maximum="200" />
+                        <p:clientValidator event="change"  update="msgs"/>
+                    </p:inputText>
+                    <p:outputLabel for="@previous" value="Название"/>
+                </span>
+                <br/>
+                <span class="ui-float-label">
+                    <p:inputNumber id="insert-price-link" value="#{cc.attrs.helper.ad.price}" required="true"
+                                 requiredMessage="Цена обязательна!">
+                        <p:clientValidator event="change"  update="msgs"/>
+                    </p:inputNumber>
+                    <p:outputLabel for="@previous" value="Цена"/>
+                </span>
+                <br/>
+                <span class="ui-float-label">
+                    <p:inputText id="insert-description" value="#{cc.attrs.helper.ad.description}">
+                        <f:validateLength maximum="1000" />
+                        <p:clientValidator event="change"  update="msgs"/>
+                    </p:inputText>
+                    <p:outputLabel for="@previous" value="Описание"/>
+                </span>
+                <br/>
+                <span class="ui-float-label">
+                    <p:inputText id="insert-gen-link" value="#{cc.attrs.helper.general.value}" required="true"
+                                 requiredMessage="Главное фото обязательно!">
+                        <p:clientValidator event="change"  update="msgs"/>
+                    </p:inputText>
+                    <p:outputLabel for="@previous" value="Ссылка на главное фото"/>
+                </span>
+                <br/>
+                <span class="ui-float-label">
+                    <p:inputText id="insert-first-link" value="#{cc.attrs.helper.first.value}" />
+                    <p:outputLabel for="@previous" value="Ссылка на фото"/>
+                </span>
+                <br/>
+                <span class="ui-float-label">
+                    <p:inputText id="insert-second-link" value="#{cc.attrs.helper.second.value}" />
+                    <p:outputLabel for="@previous" value="Ссылка на фото"/>
+                </span>
+                <br/>
+                <p:commandButton value="Принять изменения" id="insertDo"  process="@all"
+                                 action="#{bean.insertHelper()}" ajax="true"
+                                 icon="fa fa-check" update="insPanel"/>
+            </p:panel>
+        </p:dialog>
+    </h:form>
+</composite:implementation>
+</html>

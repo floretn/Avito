@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html  xmlns = "http://www.w3.org/1999/xhtml"
+       xmlns:h = "http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:composite = "http://java.sun.com/jsf/composite">
+
+<composite:interface>
+    <composite:attribute name = "update"/>
+    <composite:attribute name="onclick"/>
+</composite:interface>
+
+<composite:implementation>
+    <h:form id="tableForm">
+        <p:dataTable id="table" var="helper" value="#{bean.helpers}">
+            <p:column headerText="id">
+                <h:outputText value="#{helper.ad.id}"/>
+            </p:column>
+            <p:column headerText="Заявка">
+                <h:outputText value="#{helper.ad.name}"/>
+            </p:column>
+            <p:column headerText="Цена">
+                <h:outputText value="#{helper.ad.price}"/>
+            </p:column>
+            <p:column headerText="Ссылка на главное фото">
+                <h:outputText value="#{helper.general.value}"/>
+            </p:column>
+            <p:column headerText="Ссылка на главное фото">
+                <p:commandButton id="showBtn" action="#{bean.setShow(helper)}" value="См. Подробнее"
+                                 ajax="true" onclick="#{cc.attrs.onclick}" update="#{cc.attrs.update}"
+                                 icon="fa fa-search"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</composite:implementation>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:mc = "http://java.sun.com/jsf/composite/myComponents"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Объявления</title>
+</h:head>
+
+<h:body>
+    <h2>#{bean.msg}</h2>
+    <br/>
+    <h:form id="form">
+        <p:commandButton value="Создать объявление" id="insertBtn" ajax="true"
+                         action="#{bean.prepareForInsert}" onclick="PF('insertDlg').show();"
+                         update="insert:formIns:insPanel" icon="fa fa-plus"/>
+        <p:commandButton value="Обновить страницу" id="updateBtn" ajax="true"
+                         action="#{bean.update}"
+                         update="table:tableForm:table" icon="fa fa-refresh"/>
+        <br/>
+        <p:panel id="panel">
+            <h2>Упорядочить</h2>
+            <p:selectOneRadio id="upsert_gender" value="#{bean.sort}">
+                <f:selectItem itemLabel="По возрастанию цены" itemValue="1"/>
+                <f:selectItem itemLabel="По убыванию цены" itemValue="2"/>
+                <f:selectItem itemLabel="По возрастанию даты" itemValue="3"/>
+                <f:selectItem itemLabel="По убыванию даты" itemValue="4"/>
+            </p:selectOneRadio>
+            <p:commandButton value="Упорядочить" id="sortBtn" action="#{bean.sort}" ajax="true"
+                             update="table:tableForm:table" icon="fa fa-sort-amount-asc" />
+        </p:panel>
+        <br/>
+        <p:commandButton value="К предыдущей странице" id="previewBtn" action="#{bean.previewHelpers}" ajax="true"
+                         update="table:tableForm:table" icon="fa fa-angle-double-left" />
+        <p:commandButton value="К следующей странице" id="nextBtn" ajax="true" action="#{bean.nextHelpers}"
+                         update="table:tableForm:table" icon="fa fa-angle-double-right" />
+    </h:form>
+    <mc:inputAd id="insert" widgetVar="insertDlg" helper="#{bean.helper}"/>
+    <mc:showAd id="show" widgetVar="showDlg" helper="#{bean.show}"/>
+    <mc:table id="table" update="show:formShow:showPanel" onclick="PF('showDlg').show();"/>
+    <p:commandButton value="К предыдущей странице" id="previewBtnOutside" action="#{bean.previewHelpers}" ajax="true"
+                         update="table:tableForm:table" icon="fa fa-angle-double-left" />
+    <p:commandButton value="К следующей странице" id="nextBtnOutside" ajax="true" action="#{bean.nextHelpers}"
+                         update="table:tableForm:table" icon="fa fa-angle-double-right" />
+</h:body>
+</html>

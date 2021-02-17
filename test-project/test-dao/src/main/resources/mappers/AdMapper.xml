@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mader 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PeopleMader">
+
+    <resultMap id="adMap" type="ru.mephi.avito.models.Ad">
+        <id column="ad_pk" property="id"/>
+        <result column="ad_name" property="name"/>
+        <result column="ad_price" property="price"/>
+        <result column="ad_dsc" property="description"/>
+        <result column="ad_date" property="date"/>
+    </resultMap>
+
+    <select id="selectad" resultMap="adMap">
+        select ad_pk, ad_name, ad_price, ad_dsc, ad_date from client_workspace.t_ads where ad_pk = #{id}
+    </select>
+
+    <select id="selectAllad" resultMap="adMap">
+        select ad_pk, ad_name, ad_price, ad_dsc, ad_date from client_workspace.t_ads
+    </select>
+
+
+    <insert id="insertad" keyColumn="ad_pk" keyProperty="ad.id" useGeneratedKeys="true"  >
+        insert into client_workspace.t_ads (ad_name, ad_price, ad_dsc, ad_date)
+        values (#{ad.name}, #{ad.price}, #{ad.description}, #{ad.date});
+        commit;
+    </insert>
+
+</mapper>

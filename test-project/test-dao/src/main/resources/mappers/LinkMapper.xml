@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PeopleMapper">
+
+    <resultMap id="LinkMap" type="ru.mephi.avito.models.Link">
+        <id column="lnk_pk" property="id"/>
+        <result column="lnk_ad_fk" property="adId"/>
+        <result column="lnk_value" property="value"/>
+        <result column="lnk_gen" property="general"/>
+    </resultMap>
+
+    <select id="selectLink" resultMap="LinkMap">
+        select lnk_pk, lnk_ad_fk, lnk_value, lnk_gen from client_workspace.t_links where lnk_pk = #{id}
+    </select>
+
+    <select id="selectAllLinks" resultMap="LinkMap">
+        select lnk_pk, lnk_ad_fk, lnk_value, lnk_gen from client_workspace.t_links
+    </select>
+
+
+    <insert id="insertLin" keyColumn="lnk_pk" keyProperty="link.id" useGeneratedKeys="true"  >
+        insert into client_workspace.t_links (lnk_ad_fk, lnk_value, lnk_gen)
+        values (#{link.adId}, #{link.value}, #{link.general});
+        commit;
+    </insert>
+
+</mapper>

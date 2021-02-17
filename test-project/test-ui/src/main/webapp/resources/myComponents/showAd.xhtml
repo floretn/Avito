@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html  xmlns = "http://www.w3.org/1999/xhtml"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:h = "http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:composite = "http://java.sun.com/jsf/composite">
+
+<composite:interface>
+    <composite:attribute name = "helper" type="ru.mephi.avito.bean.Helper"/>
+    <composite:attribute name = "widgetVar"/>
+</composite:interface>
+
+<composite:implementation>
+    <h:form id="formShow">
+        <p:dialog header="Просмотр объявления" widgetVar="#{cc.attrs.widgetVar}" height="320">
+            <p:panel id="showPanel">
+                <p:dataViewGridItem>
+                    <div class="card p-d-flex p-jc-center">
+                        <h:panelGrid columns="2" cellpadding="7">
+                            <h:outputText value="Id:" styleClass="text-secondary"/>
+                            <h:outputText id="show-id-link" value="#{cc.attrs.helper.ad.id}"/>
+
+                            <h:outputText value="Название:" styleClass="text-secondary"/>
+                            <h:outputText id="show-name" value="#{cc.attrs.helper.ad.name}"/>
+
+                            <h:outputText value="Цена:" styleClass="text-secondary"/>
+                            <h:outputText id="show-price-link" value="#{cc.attrs.helper.ad.price}"/>
+
+                            <h:outputText value="Дата создания объявления:" styleClass="text-secondary"/>
+                            <h:outputText id="show-date" value="#{cc.attrs.helper.ad.date}"/>
+
+                            <h:outputText value="Описание:" styleClass="text-secondary"/>
+                            <h:outputText id="show-description" value="#{cc.attrs.helper.ad.description}"/>
+
+                            <h:outputText value="Ссылка на главное фото:" styleClass="text-secondary"/>
+                            <h:outputText id="show-gen-link" value="#{cc.attrs.helper.general.value}"/>
+
+                            <h:outputText value="Ссылка на фото:" styleClass="text-secondary"/>
+                            <h:outputText id="show-first-link" value="#{cc.attrs.helper.first.value}" />
+
+                            <h:outputText value="Ссылка на фото:" styleClass="text-secondary"/>
+                            <h:outputText id="show-second-link" value="#{cc.attrs.helper.second.value}" />
+                        </h:panelGrid>
+                    </div>
+                </p:dataViewGridItem>
+            </p:panel>
+        </p:dialog>
+    </h:form>
+</composite:implementation>
+</html>
