@@ -3,7 +3,7 @@ package ru.mephi.avito.models;
 import lombok.*;
 import java.io.Serializable;
 
-/**client-workspace.t_links*/
+/**client_workspace.t_links*/
 @Data
 @Builder
 public class Link implements Serializable {

@@ -4,7 +4,7 @@ import lombok.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-/**client-workspace.t_ads*/
+/**client_workspace.t_ads*/
 @Data
 @Builder
 public class Ad implements Serializable {
